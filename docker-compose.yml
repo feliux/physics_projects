@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  # docker exec -it physics jupyter-notebook list
+  physics:
+    container_name: physics
+    image: jupyter/scipy-notebook:notebook-6.4.0
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/home/jovyan/work/
+    networks:
+      - physics
+
+networks:
+  physics:
