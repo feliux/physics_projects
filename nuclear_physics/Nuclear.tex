@@ -155,8 +155,9 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{Nuclear}
-    
+    \title{UNED \\ Técnicas Experimentales IV \\ \large Física Nuclear}
+    \author{Félix Rodríguez Lagonell}
+    \date{2021 septiembre}
     
     
     
@@ -394,22 +395,22 @@ cobalto 60 \(Co^{60}\) y estroncio 90 \(Sr^{90}\) variando la tensión de
 entrada.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-    |   tension |   cuentas |        bq
-----+-----------+-----------+-----------
-  0 |       360 |        85 |  0.944444
-  1 |       400 |      2099 | 23.3222
-  2 |       440 |      4232 | 47.0222
-  3 |       480 |      4187 | 46.5222
-  4 |       520 |      4352 | 48.3556
-  5 |       560 |      4265 | 47.3889
-  6 |       600 |      4260 | 47.3333
-  7 |       640 |      4393 | 48.8111
-  8 |       680 |      4438 | 49.3111
-  9 |       720 |      4451 | 49.4556
- 10 |       760 |      4508 | 50.0889
- 11 |       800 |      4724 | 52.4889
- 12 |       840 |      4914 | 54.6
- 13 |       880 |      5292 | 58.8
+    |   tension (V) |   cuentas |        bq
+----+---------------+-----------+-----------
+  0 |           360 |        85 |  0.944444
+  1 |           400 |      2099 | 23.3222
+  2 |           440 |      4232 | 47.0222
+  3 |           480 |      4187 | 46.5222
+  4 |           520 |      4352 | 48.3556
+  5 |           560 |      4265 | 47.3889
+  6 |           600 |      4260 | 47.3333
+  7 |           640 |      4393 | 48.8111
+  8 |           680 |      4438 | 49.3111
+  9 |           720 |      4451 | 49.4556
+ 10 |           760 |      4508 | 50.0889
+ 11 |           800 |      4724 | 52.4889
+ 12 |           840 |      4914 | 54.6
+ 13 |           880 |      5292 | 58.8
     \end{Verbatim}
 
     \begin{center}
@@ -584,6 +585,416 @@ respuesta del detector, sus materiales de fabricación, su tamaño, etc.
 Con todo lo dicho anteriormente, y teniendo en cueta las medidas tomadas
 y los cálculos realizados, podemos llegar a la conclusión de que hemos
 realizado una correcta caracterización de nuestro detector G-M.
+
+    \hypertarget{estaduxedstica-aplicada-a-medidas-nucleares}{%
+\section{Estadística aplicada a medidas
+nucleares}\label{estaduxedstica-aplicada-a-medidas-nucleares}}
+
+Usaremos el detector G-M de la práctica anterior para medir la actividad
+de una muestra de \(Sr^{90}\). Los datos recogidos son los siguientes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   medida |   cuentas
+----------+-----------
+        1 |      3736
+        2 |      3847
+        3 |      3758
+        4 |      3706
+        5 |      3785
+        6 |      3802
+        7 |      3708
+        8 |      3761
+        9 |      3779
+       10 |      3800
+       11 |      3704
+       12 |      3812
+       13 |      3685
+       14 |      3760
+       15 |      3641
+       16 |      3703
+       17 |      3541
+       18 |      3746
+       19 |      3659
+       20 |      3581
+       21 |      3735
+       22 |      3794
+       23 |      3684
+       24 |      3748
+       25 |      3793
+       26 |      3776
+       27 |      3721
+       28 |      3766
+       29 |      3809
+       30 |      3735
+    \end{Verbatim}
+ 
+            
+    
+    Tras realizar \(N=30\) medidas obtenemos una media de \(n=3735.83\)
+cuentas, que según la distribución de Poisson, corresponde una
+desviaicón típica teórica de \(\sigma_t = 61.12\) cuentas. La desviación
+típica experimental para nuestros datos es de \(\sigma_e = 67.85\). Por
+lo tanto tenemos que las desviaciones típicas son muy similares, siendo
+la experimental superior en torno al 12\%, además, podemos ver que
+comparten la primera cifra significativa.
+
+    
+
+    Conocidas las desviaciones típicas podemos aplicar la fórmula
+
+\[
+\chi^2 = \frac{\sigma_e^2}{\sigma_t^2}(N-1)
+\]
+
+Para el cálculo de la \(\chi^2\) de Pearson
+ 
+            
+    
+    \(\chi^2 = 35.74\)
+
+    
+ 
+            
+    
+    Teniendo en cuenta el valor anterior e interpolando valores de una tabla
+de probabilidades según el valor de los grados de libertad \(f=29\),
+podemos decir que la probabilidad es \(p=0.22\)
+
+    
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+En cuanto a la calidad de nuestro detector podemos concluir que, dado
+que la probabilidad se encuentra entre los valores \(0.10<p<0.9\) y
+siendo las desviaciones típicas muy similares, nos encontramos ante un
+detector fiable y aceptable, estando en concordancia con los criterios
+de aceptación establecidos.
+
+    \hypertarget{absorciuxf3n-de-partuxedculas-beta}{%
+\section{Absorción de partículas
+beta}\label{absorciuxf3n-de-partuxedculas-beta}}
+
+Nuevamente usaremos el detector G-M y la una muestra de \(Sr^{90}\) de
+las anteriores prácticas. Los datos recogidos interponiendo blindajes de
+aluminio entre muestra y detector son los siguientes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+    |   espesor (mm) |   cuentas |   espesor (g/cm2)
+----+----------------+-----------+-------------------
+  0 |           1.5  |      4952 |           0.4125
+  1 |           1.85 |      2440 |           0.50875
+  2 |           2.2  |      1162 |           0.605
+  3 |           2.65 |       511 |           0.72875
+  4 |           3    |       213 |           0.825
+  5 |           3.1  |       191 |           0.8525
+  6 |           3.3  |        77 |           0.9075
+  7 |           3.6  |        42 |           0.99
+  8 |           4.1  |        39 |           1.1275
+  9 |           4.45 |        31 |           1.22375
+ 10 |           4.9  |        32 |           1.3475
+ 11 |           5.25 |        41 |           1.44375
+    \end{Verbatim}
+
+    Donde el espesor en \(g/cm^2\) se ha obtenido multiplicando el espesor
+(en cm) por la densidad del aluminio \(\rho = 2.75 g/cm^2\).
+
+La gráfica del número de cuentas frente al espesor, en escala
+semilogarítmica, es la siguiente
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Por inspección visual podemos apreciar que el alcance tiene un valor de
+\(0.99g/cm^2\)
+
+    
+
+    Disponemos de un set de datos que relaciona linealmente el alcance con
+la energía máxima de las partículas \(\beta\) emitidas por diferentes
+nucleidos
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coeficientes: 1.910
+Término independiente: 0.163
+Mean Squared Error (MSE): 0.01
+R2: 0.99
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_32_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Con los resultados de la regresión lineal y el valor de alcance obtenido
+experimenalmente podemos estimar el valor de la energía máxima para
+nuestra muestra radiactiva de emisión beta es \(E_m = 2.05MeV\)
+
+    
+
+    Podemos comparar estos valores experimentales frente a los resultados
+dados por las siguientes ecuaciones, conocidas como las ecuaciones de
+Feather:
+
+\[
+E = 1.845D + 0.245 \quad si \quad 0.3<D<1.5 \quad ;  \quad \\
+E = 1.918D^{0.72} \quad si \quad 0.012<D<1.3
+\]
+ 
+            
+    
+    Teniendo en cuenta que nuestra fuente de estroncio 90 tiene una energía
+máxima teórica de \(E_t = 2.28 MeV\), llegamos al resultado de un
+alcance teórico \(D = 1.1g/cm^2\) según la primera fórmula de Feather.
+
+    
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Los resultados obtenidos son comparables ya que todos comparten orden de
+magnitud y primera cifra significativa. Sin embargo, la diferencia entre
+ambos resultados puede tener varias causas. Algunas de ellas pueden ser
+errores sistemáticos durante el experimento (debido a mala calibración
+de los instrumentos, desplazamiento de las muestras, errores en la
+medición manual), falta de rigurosidad en las estimaciones (la
+estimación del alcance se ha hecho por inspección visual), falta de
+datos (más datos supone mayor fiabilidad en experimentos de naturaleza
+aleatoria), etc. Además, hay que tener en cuenta que estamos comparando
+valores entre dos métodos que son propiamente experimentales, sin un
+análisis de confianza no podemos concluir que los valores obtenidos son
+inconsistentes.
+
+    \hypertarget{detectores-de-centelleo.-absorciuxf3n-de-radiaciuxf3n-gamma}{%
+\section{Detectores de centelleo. Absorción de radiación
+gamma}\label{detectores-de-centelleo.-absorciuxf3n-de-radiaciuxf3n-gamma}}
+
+Colocamos distintos materiales (aluminio, plomo, hierro) de diferentes
+espesores entre una muestra radiactiva de \(Co^{60}\) y un detector de
+centelleo. Representamos dichos datos en la siguiente gráfica junto con
+las regresiones lineales correspondientes. Además presentaremos algunos
+resultados interesantes requeridos en esta práctica
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ALUMINIO
+Densidad 2.7 g/cm3
+Contaje espesor cero N\_0 = 11091 cuentas
+Contaje mitad N\_12 = 5546 cuentas
+Espesor de semirreducción X\_12 = 79.54 mm
+Coeficiente de absorción lineal mu = 0.087 cm-1
+Coeficiente de absorción másico mu\_m = 0.032 cm2/g
+Número de átomos por cm3: 6.02626116026962e+22
+Sección eficaz sigma = 1.4461051514657685e-24 cm2
+
+PLOMO
+Densidad 11.34 g/cm3
+Contaje espesor cero N\_0 = 9360 cuentas
+Contaje mitad N\_12 = 4680 cuentas
+Espesor de semirreducción X\_12 = 22.54 mm
+Coeficiente de absorción lineal mu = 0.308 cm-1
+Coeficiente de absorción másico mu\_m = 0.027 cm2/g
+Número de átomos por cm3: 3.295901361891892e+22
+Sección eficaz sigma = 9.332363419312933e-24 cm2
+
+HIERRO
+Densidad 7.874 g/cm3
+Contaje espesor cero N\_0 = 10172 cuentas
+Contaje mitad N\_12 = 5086 cuentas
+Espesor de semirreducción X\_12 = 30.55 mm
+Coeficiente de absorción lineal mu = 0.227 cm-1
+Coeficiente de absorción másico mu\_m = 0.029 cm2/g
+Número de átomos por cm3: 8.491062108378548e+22
+Sección eficaz sigma = 2.6721994446750493e-24 cm2
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_38_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Finalmente calcularemos la eficiencia del detector de centelleo
+
+    \textbf{Fuente: \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Tipo de emisión: emisión \(\beta^{-}\) y \(\gamma\)
+\item
+  Tiempo de medida: \(t=90s\)
+\item
+  Número de cuentas: \(L=164463\)
+\item
+  Fondo: \(F = 499\)
+\item
+  Tasa de recuento neta: \(A'= \frac{(L-F)}{t} = 1821.82 Bq\)
+\item
+  Actividad inicial de la muestra: \(A_0 = 1 \mu Ci = 37000 Bq\)
+\item
+  Fecha: septiembre 2010. Tiempo transcurrido hasta marzo 2012 cuando
+  fueron tomadas las medidas: \(T_m = 18 meses (1.5 a)\)
+\item
+  Período:
+  \(T_{1/2} = 5.26 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.13 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 30363 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.0599\)
+\end{itemize}
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Para las energías de desintegración de la muestra de \(Co^{60}\), que
+son 1.172 MeV y 1.333 MeV, hemos obtenidos los siguientes valores
+teóricos por inspección visual de las gráficas aportadas:
+
+\textbf{Teórico}
+
+\begin{itemize}
+\item
+  Aluminio: \(\mu = 0.15cm^{-1}\) y \(\mu_m = 0.025 cm^2/g\)
+\item
+  Plomo: \(\mu = 0.6 cm^{-1}\) y \(\mu_m = 0.03 cm^2/g\)
+\end{itemize}
+
+Mientras que los valores experimentales han sido
+
+\textbf{Experimental}
+
+\begin{itemize}
+\item
+  Aluminio: \(\mu = 0.087cm^{-1}\) y \(\mu_m = 0.032 cm^2/g\)
+\item
+  Plomo: \(\mu = 0.308 cm^{-1}\) y \(\mu_m = 0.027 cm^2/g\)
+\end{itemize}
+
+Podemos comprobar que valores teóricos y experimentales son muy
+similares para el coeficiente de absorción másico (al redondear
+comparten primera cifra significativa), sin embargo hay notables
+diferencias para el valor de la absorción lineal. Estas diferencias
+pueden deberse a diferentes motivos:
+
+\begin{itemize}
+\item
+  Falta de rigor en los valores teóricos, obtenidos por inspección
+  visual de una gŕafica.
+\item
+  No se han establecido intervalos de confianza ni medidas de error, ya
+  sean sistemáticos en la medida de espesores, o bien aleatorios
+  referentes a la escasez de medidas. Además no se tienen en cuenta
+  otras fuentes de radiación que también pueden llegar a nuestro
+  detector.
+\item
+  Al ser una muestra radiativa de emisión \(\beta\), es posible que
+  nuestro detector haya capturado parte de éstas partículas, así como
+  los fotones originados por efecto Compton y/o en la aniquilación
+  electrón-positrón que conlleva la creación de pares
+\end{itemize}
+
+La ley de atenuación exponencial de radiación gamma es válida al
+tratarse de un haz colimado y monoenergético siempre que el material
+atravesado sea de poco espesor y naturaleza homogénea, condiciones que
+no podemos garantizar en nuestro experimento ya que
+
+\begin{itemize}
+\item
+  El haz no ha sido colimado y contiene varias energías.
+\item
+  No sabemos la pureza y homogeneidad del material blindado.
+\end{itemize}
+
+Dicho esto, a pesar de no poder garantizar la ley de atenuación
+exponencial, sí es cierto que los datos se ajustan linealmente en una
+escala semilogarítmica, por lo que en primera aproximación podrían
+relacionarse a un comportamiento exponencial.
+
+    \hypertarget{determinaciuxf3n-experimental-del-peruxedodo-de-una-muestra-radiactiva}{%
+\section{Determinación experimental del período de una muestra
+radiactiva}\label{determinaciuxf3n-experimental-del-peruxedodo-de-una-muestra-radiactiva}}
+
+El detector utilizado es un detector de centelleo similar al de la
+práctica anterior. Se utiliza una muestra de período corto \(Ba^{137}\)
+que se obtiene con un generador de isótopos que contiene \(Cs^{137}\) en
+equilibrio con el \(Ba^{137}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+    |   tiempo (m) |   cuentas
+----+--------------+-----------
+  0 |            0 |     10479
+  1 |            1 |      6934
+  2 |            2 |      5998
+  3 |            3 |      4169
+  4 |            4 |      3374
+  5 |            5 |      2636
+  6 |            6 |      1680
+  7 |            7 |      1537
+  8 |            8 |      1152
+  9 |            9 |       737
+ 10 |           10 |       665
+ 11 |           11 |       488
+ 12 |           12 |       436
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_45_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Aplicando logaritmos a la ecuación de la actividad de una muestra
+radiactiva tenemos
+
+\[
+A(t) = A_0e^{-\lambda t} \quad -> \quad Ln (A(t)) = -\lambda t +Ln(A_0)
+\]
+
+Así la contstante de desintegración será la pendiente de una regresión
+lineal. Por otro lado el período de semidesintegración es
+
+\[
+T_{1/2} = \frac{Ln(2)}{\lambda}
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coeficientes: -0.005
+Término independiente: 9.194
+Mean Squared Error (MSE): 0.01
+R2: 0.99
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_47_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Por lo tanto tenemos que la constante es \(\lambda = 0.005\) 1/s
+
+    
+ 
+            
+    
+    Siendo el período de semidesintegración 138.63 s
+
+    
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Hemos comprobado que nuestros datos cumplen una ley de decaimiento
+exponencial, calculando así la constante de desintegración y el
+correspondiente período de semidesintegración. Al tener un período de
+semidesintegración un valor entorno a 2.3 minutos no podemos tomar
+medidas de tiempo mayores. Si midiésemos cada 5 minutos, por ejemplo,
+transcurriría casi dos veces el período de semidesintegración entre
+medidas, reduciéndose casi dos veces a la mitad la población de núcleos.
 
 
     % Add a bibliography block to the postdoc
