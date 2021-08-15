@@ -2,8 +2,17 @@
 
 1. Caracterización de un contador Geiger-Muller
 
-2. Estadística aplicada a medidas nucleares.
+2. Estadística aplicada a medidas nucleares
 
+3. Absorción de partículas beta
+
+4. Detectores de centelleo. Absorción de radiación gamma
+
+5. Determinación experimental del período de una muestra radiactiva
+
+6. Espectrometría de partículas alfa y beta. Absorción de partículas alfa
+
+7. Espectroscopía gamma con detectores de INA(TL)
 
 ## Generate report
 

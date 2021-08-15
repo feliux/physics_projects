@@ -155,9 +155,8 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{UNED \\ Técnicas Experimentales IV \\ \large Física Nuclear}
-    \author{Félix Rodríguez Lagonell}
-    \date{2021 septiembre}
+    \title{Nuclear}
+    
     
     
     
@@ -391,26 +390,25 @@ la caracterización de un contador Geiger-Muller (G-M).
 \subsection{Curva característica}\label{curva-caracteruxedstica}}
 
 En primer lugar se mide la actividad de una muestra radiactiva de
-cobalto 60 \(Co^{60}\) y estroncio 90 \(Sr^{90}\) variando la tensión de
-entrada.
+\(Co^{60}\) y \(Sr^{90}\) variando la tensión de entrada.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-    |   tension (V) |   cuentas |        bq
-----+---------------+-----------+-----------
-  0 |           360 |        85 |  0.944444
-  1 |           400 |      2099 | 23.3222
-  2 |           440 |      4232 | 47.0222
-  3 |           480 |      4187 | 46.5222
-  4 |           520 |      4352 | 48.3556
-  5 |           560 |      4265 | 47.3889
-  6 |           600 |      4260 | 47.3333
-  7 |           640 |      4393 | 48.8111
-  8 |           680 |      4438 | 49.3111
-  9 |           720 |      4451 | 49.4556
- 10 |           760 |      4508 | 50.0889
- 11 |           800 |      4724 | 52.4889
- 12 |           840 |      4914 | 54.6
- 13 |           880 |      5292 | 58.8
+   tension (V) |   cuentas |        bq
+---------------+-----------+-----------
+           360 |        85 |  0.944444
+           400 |      2099 | 23.3222
+           440 |      4232 | 47.0222
+           480 |      4187 | 46.5222
+           520 |      4352 | 48.3556
+           560 |      4265 | 47.3889
+           600 |      4260 | 47.3333
+           640 |      4393 | 48.8111
+           680 |      4438 | 49.3111
+           720 |      4451 | 49.4556
+           760 |      4508 | 50.0889
+           800 |      4724 | 52.4889
+           840 |      4914 | 54.6
+           880 |      5292 | 58.8
     \end{Verbatim}
 
     \begin{center}
@@ -431,7 +429,7 @@ superior a 200V tenemos que la tensión de trabajo es
 
     La pendiente relativa al punto medio de la meseta expresada en tanto por
 ciento por 100V viene data por la expresión \[
-P = \frac{\frac{R_f - R_i}{(R_f + R_i)/2}}{(V_f - V_i)/100}x100
+P = \frac{\frac{R_f - R_i}{(R_f + R_i)/2}}{(V_f - V_i)/100}100
 \]
  
             
@@ -680,20 +678,20 @@ las anteriores prácticas. Los datos recogidos interponiendo blindajes de
 aluminio entre muestra y detector son los siguientes
 
     \begin{Verbatim}[commandchars=\\\{\}]
-    |   espesor (mm) |   cuentas |   espesor (g/cm2)
-----+----------------+-----------+-------------------
-  0 |           1.5  |      4952 |           0.4125
-  1 |           1.85 |      2440 |           0.50875
-  2 |           2.2  |      1162 |           0.605
-  3 |           2.65 |       511 |           0.72875
-  4 |           3    |       213 |           0.825
-  5 |           3.1  |       191 |           0.8525
-  6 |           3.3  |        77 |           0.9075
-  7 |           3.6  |        42 |           0.99
-  8 |           4.1  |        39 |           1.1275
-  9 |           4.45 |        31 |           1.22375
- 10 |           4.9  |        32 |           1.3475
- 11 |           5.25 |        41 |           1.44375
+   espesor (mm) |   cuentas |   espesor (g/cm2)
+----------------+-----------+-------------------
+           1.5  |      4952 |           0.4125
+           1.85 |      2440 |           0.50875
+           2.2  |      1162 |           0.605
+           2.65 |       511 |           0.72875
+           3    |       213 |           0.825
+           3.1  |       191 |           0.8525
+           3.3  |        77 |           0.9075
+           3.6  |        42 |           0.99
+           4.1  |        39 |           1.1275
+           4.45 |        31 |           1.22375
+           4.9  |        32 |           1.3475
+           5.25 |        41 |           1.44375
     \end{Verbatim}
 
     Donde el espesor en \(g/cm^2\) se ha obtenido multiplicando el espesor
@@ -995,6 +993,375 @@ semidesintegración un valor entorno a 2.3 minutos no podemos tomar
 medidas de tiempo mayores. Si midiésemos cada 5 minutos, por ejemplo,
 transcurriría casi dos veces el período de semidesintegración entre
 medidas, reduciéndose casi dos veces a la mitad la población de núcleos.
+
+    \hypertarget{espectrometruxeda-de-partuxedculas-alfa-y-beta.-absorciuxf3n-de-partuxedculas-alfa}{%
+\section{Espectrometría de partículas alfa y beta. Absorción de
+partículas
+alfa}\label{espectrometruxeda-de-partuxedculas-alfa-y-beta.-absorciuxf3n-de-partuxedculas-alfa}}
+
+Contamos con un detector de barrera de superficie con el que detectamos
+partículas alfa provenientes de una fuente (\(Am^{241}(\alpha)\),
+\(Sr^{90}(\beta)\), \(Cs^{137}(\beta; CI)\)) radiactiva mientras
+variamos la distancia. No tendremos medidas de fondo por ser
+prácticamente despreciable.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   distancia (cm) |   area (cuentas) |        bq
+------------------+------------------+-----------
+              1   |            61281 | 204.27
+              1.5 |            36195 | 120.65
+              2   |            24549 |  81.83
+              2.5 |            13676 |  45.5867
+              3   |             9207 |  30.69
+              3.5 |              563 |   1.87667
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coeficientes: -75.319
+Término independiente: 250.286
+Mean Squared Error (MSE): 332.39
+R2: 0.93
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_53_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Mediante un ajuste lineal podemos extrapolar el alcance (punto de corte
+con eje X), que toma un valor de 3.32 cm.
+
+    
+
+    \textbf{Eficiencia del detector para \(\alpha\)}
+
+Se toma el valor de lárea cuando la muestra está lo más cercana posible
+al detector, es decir, a 1cm.
+
+\begin{itemize}
+\item
+  Área/t: \(A' = 204.27\) Bq
+\item
+  Actividad inicial de la muestra: \(A_0 = 37\) kBq
+\item
+  Fecha: año 1988. Tiempo transcurrido entre 1988 y 2012: 24 años.
+  \(T_{1/2} = 458 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.0015 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 35680.19 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.0057\)
+\end{itemize}
+
+    \textbf{Eficiencia del detector para \(\beta\)}
+
+Se toma el valor del área para el espectro del \(Sr^{90}\)
+
+\begin{itemize}
+\item
+  Área/t: \(A' = 370.56\) Bq
+\item
+  Actividad inicial de la muestra: \(A_0 = 37\) kBq
+\item
+  Fecha: año 1988. Tiempo transcurrido entre 1988 y 2012: 24 años.
+  \(T_{1/2} = 28.1 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.024 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 20468.88 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.018\)
+\end{itemize}
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Aunque el espectro del \(Am^{241}\) tiene forma de acampanada, si
+nuestro detector tuviera mayor resolución realmente deberíamos observar
+picos energéticos de valor 5545, 5513, 5486, 5443 y 5388 keV.
+
+Una de las curiosidades de las partículas \(\alpha\) es que su alcance
+en aire es del orden de unos pocos centímetros, con lo cual serían
+indetectables en fuentes alejadas. En particular, con los datos de este
+ejercicio obtenemos que serían indetectables a distancias mayores a 3.32
+cm.
+
+Las partículas \(\beta\) tienen un espectro continuo porque en cada
+proceso existe un reparto de energía entre el electrón y el
+antineutrino. La forma del espectro parte de energía cero, aumenta y
+disminuye hasta llegar un punto en el que la energía cinética máxima del
+electrón es igual a la diferencia de masas entre el estado inicial y
+final, que corresponde al caso en el que la energía cinética del
+antineutrino es cero.
+
+En cuanto a los espectros podemos decir que el espectro del \(Sr^{90}\)
+tiene dos componentes, una son las betas del decaimineto de \(Sr^{90}\)
+a \(Y^{90}\) y otra debida al decaimiento de \(Y^{90}\) a \(Zr^{90}\).
+El filtro de plomo mantiene la forma del espectro beta aunque reduciendo
+su área en un 90\%. El espectro del \(Cs^{137}\) tiene la misma forma
+que los anteriores espectros a diferencia de dos picos debidos a efectos
+de reconversión interna.
+
+Finalmente, el contador G-M es mejor porque resultó tener una eficiencia
+del 11\%, mientras que éste es de 1.8\%.
+
+    \hypertarget{espectroscopuxeda-gamma-con-detectores-de-inatl}{%
+\section{Espectroscopía gamma con detectores de
+INA(TL)}\label{espectroscopuxeda-gamma-con-detectores-de-inatl}}
+
+Los detectores de NaI(Tl) son detectores de centelleo, en los que la
+sustancia luminiscente es NaI(Tl). Para obtener los espectros de
+muestras emisoras gamma se utiliza un sistema de acumulación de impulsos
+similar al de la práctica anterior.
+
+Una vez medido el fondo, y tras calibrar el detector con una muestra de
+\(Eu^{152}\), pasaremos a determinar su eficiencia y resolución.
+
+    \textbf{Calibración}
+
+\begin{itemize}
+\item
+  Primer pico: canal \(c_1 = 38.78\); energía \(E = 0.122\) MeV
+\item
+  Segundo pico: canal \(c_2 = 400.92\); energía \(E = 1.41\) MeV
+\end{itemize}
+
+\textbf{Eficiencia}
+
+\begin{itemize}
+\item
+  Actividad inicial de la muestra \(A_0 = 40.2\) kBq
+\item
+  Fecha: año 2001. Tiempo transcurrido entre 2001 y 2012: 11 años.
+  \(T_{1/2} = 13.52 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.051 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 22872.05 Bq\)
+\item
+  Eficiencia \(\epsilon (E) = \frac{A_f}{AC_r}\), siendo \(A_f\) el área
+  del fotopico (Bq)
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   energia (MeV) |   area pico (Bq) |    Cr |   eficiencia |   eficiencia (\%)
+-----------------+------------------+-------+--------------+------------------
+           0.04  |           1680.1 | 0.567 |        0.13  |             13
+           0.122 |            584.8 | 0.307 |        0.083 |              8.3
+           0.244 |             98.7 | 0.079 |        0.055 |              5.5
+           0.344 |            303.1 | 0.272 |        0.049 |              4.9
+           0.78  |             56.3 | 0.133 |        0.019 |              1.9
+           0.96  |             28.1 | 0.145 |        0.008 |              0.8
+           1.41  |             22.6 | 0.214 |        0.005 |              0.5
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_64_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{Resolución}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ fuente   |   energia (MeV) |   anchura semialtura (MeV) |   resolucion (\%)
+----------+-----------------+----------------------------+------------------
+ Cs137    |           0.667 |                      0.057 |                9
+ Co60     |           1.17  |                      0.067 |                6
+ Co60     |           1.32  |                      0.073 |                6
+ Na22     |           1.26  |                      0.08  |                6
+ Na22     |           0.51  |                      0.046 |                9
+ Zn65     |           1.12  |                      0.073 |                7
+ Mn54     |           0.834 |                      0.062 |                7
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_67_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Una vez caracterizado el detector, pasaremos estudiar el espectro de
+distintos isótopos
+
+    \(Cs^{137}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.468 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.478 MeV
+\item
+  Energía del pico de retrodispersión: 0.201 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.184 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_70_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Co^{60}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.966 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.962 MeV y 1.119 MeV
+\item
+  Energía del pico de retrodispersión: 0.233 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.210 MeV y 0.214 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_72_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Na^{22}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 1.040 MeV
+\item
+  Energía del borde Compton del espectro teórico: 1.063 MeV
+\item
+  Energía del pico de retrodispersión: 0.190 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.213 MeV
+\end{itemize}
+
+\textbf{Aniquilación}
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro (aniquilación): 0.336 MeV
+\item
+  Energía del borde Compton del espectro teórico (aniquilación): 0.341
+  MeV
+\item
+  Energía del pico de retrodispersión (aniquilación): No se ve
+\item
+  Energía del pico de retrodispersión teório (aniquilación): 0.170 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_74_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Zn^{65}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.909 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.906 MeV
+\item
+  Energía del pico de retrodispersión: 0.229 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.208 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_76_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Mn^{54}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.635 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.646 MeV
+\item
+  Energía del pico de retrodispersión: 0.212 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.196 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_78_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Por otro lado, acumulamos durante un tiempo una muestra de \(Co^{60}\)
+de actividad conocida y, durante el mismo tiempo, otra muestra de
+\(Co^{60}\) de actividad desconocida. Comparando los fotopicos se
+obtendrá la actividad desconocida.
+
+    \textbf{Actividad conocida \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Actividad inicial de la muestra \(A_0 = 1 \mu Ci = 37000 Bq\)
+\item
+  Fecha: año 2009. Tiempo transcurrido entre 2009 y 2012: 3 años.
+  \(T_{1/2} = 5.26 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.13 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 24917.91 Bq\)
+\item
+  Área del primer pico: 268.19 Bq
+\item
+  Área del segundo pico: 246.08 Bq
+\end{itemize}
+
+\textbf{Actividad desconocida \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Área del primer pico: 366.24 Bq
+\item
+  Área del segundo pico: 340.33 Bq
+\item
+  Actividad
+  \(A = A_0e^{- \lambda T_m} \frac{\frac{366.24}{268.19} + \frac{340.33}{246.08}}{2} = 34244.74 Bq\)
+\end{itemize}
+
+    Para finalizar, introducimos una muestra de elemento desconocido y
+almacenamos datos hasta tener una buena estadística. Tenemos 4 fotopicos
+con energías 0.511, 0.662, 1.17 y 1.33 MeV. Con éstos datos concluimos
+que se trata de una combinación de \(Co^{60}, Cs^{137}\) y \(Na^{22}\)
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+En esta práctica hemos calculado la eficiencia y la resolución del
+detector. Podemos ver que la eficiencia decae cuánto mayor es la energía
+de los fotones, pues no logran interactuar con el detector. La
+resolución decae también, pero en este caso el decaimiento es lineal.
+
+El espectro de la radiación gamma es discreto, pues como hemos visto
+durante el desarrollo del ejercicio, cada energía (discreta) corresponde
+con los fotopicos observados. Junto a cada pico de energía vemos la
+correspondiente región continua asociada al efecto Compton. A vistas de
+los resultados nada parece indicar una discordancia entre los resultados
+teóricos y experimentales. A este respecto cabe mencionar los picos de
+0.511 MeV, los cuales surgen por la aniquilación de los positrones
+emitidos por algunas muestras, que dan lugar a fotones de dicha energía.
+Por ejemplo ocurre con el \(Na^{22}\) aunque no con el \(Zn{65}\). Cabe
+entonces preguntarse por qué el \(Zn{65}\) tiene un pico en 0.511
+MeV\ldots{} la razón es que el \(Zn{65}\) es capaz de emitir energía
+mayor a 1.022 MeV, con lo que puede dar lugar a la creación de pares con
+energía igual a 0.511 MeV.
+
+Una obervación importante es que en algunos espectros aparecen picos
+correspondientes a emisión de rayos X. Esto ocurre debido a procesos de
+conversión interna donde la reordenación electrónica da lugar a emisión
+de rayos X.
+
+Para finalizar, recalcar que la calibración del espectro de energías es
+un proceso fundamental para identificar la posición de cada pico en
+nuestra escala de energías. Esto lo hemos hecho comparando todos los
+picos del espectro con los del \(Eu^{152}\).
+
+A modo de curiosidad, tan solo decir que aunque en este experimento se
+ha medido el espectro gamma de una serie de elementos en el laboratorio,
+también resultaría útil para medir la radiación gamma que nos llega
+desde el exterior en forma de rayos cósmicos, o por ejemplo podríamos
+medir la radiactividad de un plátano (por su contenido en pótasio
+\(K^{40}\)) o bien la radiactividad cerca de una central nuclear
+(\(U^{238}\)) y/o algunas tierras raras presentes de manera natural en
+el ambiente o en particular en la fabricación de lámparas elécticas,
+como son el torio (\(Th^{232}\)).
 
 
     % Add a bibliography block to the postdoc
