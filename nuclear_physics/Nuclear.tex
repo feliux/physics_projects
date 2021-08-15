@@ -1,0 +1,1371 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+    \usepackage{iftex}
+    \ifPDFTeX
+    	\usepackage[T1]{fontenc}
+    	\usepackage{mathpazo}
+    \else
+    	\usepackage{fontspec}
+    \fi
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Nuclear}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{caracterizaciuxf3n-de-un-contador-geiger-muller}{%
+\section{Caracterización de un contador
+Geiger-Muller}\label{caracterizaciuxf3n-de-un-contador-geiger-muller}}
+
+Se realizan una serie de medidas en el laboratorio con la idea de hacer
+la caracterización de un contador Geiger-Muller (G-M).
+
+    \hypertarget{curva-caracteruxedstica}{%
+\subsection{Curva característica}\label{curva-caracteruxedstica}}
+
+En primer lugar se mide la actividad de una muestra radiactiva de
+\(Co^{60}\) y \(Sr^{90}\) variando la tensión de entrada.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   tension (V) |   cuentas |        bq
+---------------+-----------+-----------
+           360 |        85 |  0.944444
+           400 |      2099 | 23.3222
+           440 |      4232 | 47.0222
+           480 |      4187 | 46.5222
+           520 |      4352 | 48.3556
+           560 |      4265 | 47.3889
+           600 |      4260 | 47.3333
+           640 |      4393 | 48.8111
+           680 |      4438 | 49.3111
+           720 |      4451 | 49.4556
+           760 |      4508 | 50.0889
+           800 |      4724 | 52.4889
+           840 |      4914 | 54.6
+           880 |      5292 | 58.8
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Por inspección visual podemos ver que la tensión umbral viene dada por
+el valor \(V_u=440V\). La longitud de la meseta en este caso sería
+\(V_f - V_i = 760 - 480 = 280V\), siendo \(V_f\) y \(V_i\) la tensión al
+comienzo y al final de la meseta. Puesto que la longitud de la meseta es
+superior a 200V tenemos que la tensión de trabajo es
+\(V_t = V_i + 100 =580V\)
+
+    
+
+    La pendiente relativa al punto medio de la meseta expresada en tanto por
+ciento por 100V viene data por la expresión \[
+P = \frac{\frac{R_f - R_i}{(R_f + R_i)/2}}{(V_f - V_i)/100}100
+\]
+ 
+            
+    
+    Siendo \(R_i = 46.52\), \(R_f=50.09\) los Bq al comienzo y final de la
+meseta, respectivamente. Con estos datos obtenemos un valor de
+\(P=2.64\) en \% (por 100V)
+
+    
+
+    \hypertarget{fondo}{%
+\subsection{Fondo}\label{fondo}}
+
+    Mediante el método de las dos fuentes podemos calcular el tiempo de
+resolución del contador Geiger-Muller. Si se mide durante 90s la
+actividad de una muestra de \(Co^{60}\) y \(Sr^{90}\), obtenemos la
+siguiente tabla
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+     |    0 |    1 |    2 |    3 |   media |    bq
+-----+------+------+------+------+---------+-------
+ A1  | 4036 | 4110 | 4096 | 4082 | 4081    | 45.34
+ A12 | 7577 | 7545 | 7630 | 7433 | 7546.25 | 83.85
+ A2  | 3750 | 3806 | 3833 | 3819 | 3802    | 42.24
+ F   |   27 |   14 |   30 |   29 |   25    |  0.28
+    \end{Verbatim}
+
+    Donde \(A_1\) corresponde a la actividad de la muestra de cobalto,
+\(A_2\) a la muestra de estroncio, \(A_{12}\) la actividad de ambas
+muestras y \(F\) la radiación de fondo (sin muestra). Con estas medidas
+podemos calcular el tiempo de resolución del contador mediante la
+siguiente fórmula
+
+\[
+\tau = \frac{A_{12} + F - A_1 - A_2}{A_1^2 + A_2^2 - F^2 - A_{12}^2}
+\]
+ 
+            
+    
+    Sustituyendo valores obtenemos que el tiempo de resolución es
+\(0.0011s\)
+
+    
+
+    \hypertarget{eficiencia-del-detector}{%
+\subsection{Eficiencia del detector}\label{eficiencia-del-detector}}
+
+    \textbf{Fuente: \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Tipo de emisión: emisión \(\beta^{-}\) y \(\gamma\)
+\item
+  Tiempo de medida: \(t=90s\)
+\item
+  Número de cuentas: \(L=4537\)
+\item
+  Fondo: \(F = 25\)
+\item
+  Tasa de recuento neta: \(A'= \frac{(L-F)}{t} = 50.13 Bq\)
+\item
+  Actividad inicial de la muestra: \(A_0 = 1 \mu Ci = 37000 Bq\)
+\item
+  Fecha: abril 2010. Tiempo transcurrido hasta marzo 2012 cuando fueron
+  tomadas las medidas: \(T_m = 23 meses (1.92 a)\)
+\item
+  Período:
+  \(T_{1/2} = 5.26 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.13 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 28728 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.0018\)
+\end{itemize}
+
+    \textbf{Fuente: \(Sr^{90}\)}
+
+\begin{itemize}
+\item
+  Tipo de emisión: emisión \(\beta^{-}\)
+\item
+  Tiempo de medida: \(t=90s\)
+\item
+  Número de cuentas: \(L=34212\)
+\item
+  Fondo: \(F = 25\)
+\item
+  Tasa de recuento neta: \(A'= \frac{(L-F)}{t} = 380.13 Bq\)
+\item
+  Actividad inicial de la muestra: \(A_0 = 0.1 \mu Ci = 3700 Bq\)
+\item
+  Fecha: mayo 2010. Tiempo transcurrido hasta marzo 2012 cuando fueron
+  tomadas las medidas: \(T_m = 22 meses (1.83 a)\)
+\item
+  Período:
+  \(T_{1/2} = 28.5 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.024 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 3538.93 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.11\)
+\end{itemize}
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+La construcción de la curva característica de un detector Geiger-Muller
+permite determinar el potencial óptimo de trabajo del dispositivo.
+
+La pendiente de la meseta de un detector Geiger ordinario suele estar
+entorno al 2\%-3\%, resultado que concuerda en gran medida con el valor
+hallado en este experimento (2.64\%).
+
+En cuanto al tiempo de respuesta de nuestro detector, podemos decir que
+es de respuesta lenta \(\tau = 0.0011s\), ya que existen detectores con
+un tiempo de resolución del microsegundo.
+
+Es importante recalcar que conservar la posición de las muestras a lo
+largo del experimento es importante puesto que la eficiencia del
+detector, en especial la eficiencia geométrica, depende de la distancia
+a la fuente de partículas. En cuanto a la eficiencia según el tipo de
+fuente emisora, tenemos dos casos por analizar:
+
+\begin{itemize}
+\item
+  Radiación gamma \(\gamma\): al ser radiación de alta energía tenemos
+  que la mayoría de los fotones emitidos atraviesan el contador con
+  mínima interacción. Cabe preguntarse si nuestro detector cumple los
+  estándares habituales. Dado que los detectores G-M para la radiación
+  gamma suelen tener una eficiencia de entorno al 1\% (o incluso menor)
+  podemos concluir que nuestro detector sigue dicha normalidad, pues el
+  valor obtenido es de entorno al \(\epsilon = 0.18\) \%
+\item
+  Radiación beta \(\beta\): los contadores G-M se caracterizan por ser
+  buenos detectores de este tipo de radiación (corto alcance), por lo
+  que suelen tener eficiencias muy cercanas al 100\%, sin embargo,
+  nuestro detector G-M ofrece una eficiencia de entorno al 11\%, con lo
+  que no podemos concluir que sea especialmente bueno para este tipo de
+  radiación (al contrario que con la radiación gamma).
+\end{itemize}
+
+Por ahora hemos analizado la eficiencia del detector G-M según el tipo
+de radiación, pero es importante aclarar que la eficiencia absoluta no
+solo depende de este factor sino que también de factores geométricos
+(como ya hemos comentado anteriormente sobre la posición de las
+partículas). La relación entre las distintas eficiencias que puede
+resumirse según la fórmula
+\(\epsilon_t = \epsilon_{geo} x \epsilon_{i}\), y aquí intervienen
+factores que pueden ser muy determinantes como son la energía de la
+radiación, la probabilidad de interacción en el detector, el tiempo de
+respuesta del detector, sus materiales de fabricación, su tamaño, etc.
+
+Con todo lo dicho anteriormente, y teniendo en cueta las medidas tomadas
+y los cálculos realizados, podemos llegar a la conclusión de que hemos
+realizado una correcta caracterización de nuestro detector G-M.
+
+    \hypertarget{estaduxedstica-aplicada-a-medidas-nucleares}{%
+\section{Estadística aplicada a medidas
+nucleares}\label{estaduxedstica-aplicada-a-medidas-nucleares}}
+
+Usaremos el detector G-M de la práctica anterior para medir la actividad
+de una muestra de \(Sr^{90}\). Los datos recogidos son los siguientes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   medida |   cuentas
+----------+-----------
+        1 |      3736
+        2 |      3847
+        3 |      3758
+        4 |      3706
+        5 |      3785
+        6 |      3802
+        7 |      3708
+        8 |      3761
+        9 |      3779
+       10 |      3800
+       11 |      3704
+       12 |      3812
+       13 |      3685
+       14 |      3760
+       15 |      3641
+       16 |      3703
+       17 |      3541
+       18 |      3746
+       19 |      3659
+       20 |      3581
+       21 |      3735
+       22 |      3794
+       23 |      3684
+       24 |      3748
+       25 |      3793
+       26 |      3776
+       27 |      3721
+       28 |      3766
+       29 |      3809
+       30 |      3735
+    \end{Verbatim}
+ 
+            
+    
+    Tras realizar \(N=30\) medidas obtenemos una media de \(n=3735.83\)
+cuentas, que según la distribución de Poisson, corresponde una
+desviaicón típica teórica de \(\sigma_t = 61.12\) cuentas. La desviación
+típica experimental para nuestros datos es de \(\sigma_e = 67.85\). Por
+lo tanto tenemos que las desviaciones típicas son muy similares, siendo
+la experimental superior en torno al 12\%, además, podemos ver que
+comparten la primera cifra significativa.
+
+    
+
+    Conocidas las desviaciones típicas podemos aplicar la fórmula
+
+\[
+\chi^2 = \frac{\sigma_e^2}{\sigma_t^2}(N-1)
+\]
+
+Para el cálculo de la \(\chi^2\) de Pearson
+ 
+            
+    
+    \(\chi^2 = 35.74\)
+
+    
+ 
+            
+    
+    Teniendo en cuenta el valor anterior e interpolando valores de una tabla
+de probabilidades según el valor de los grados de libertad \(f=29\),
+podemos decir que la probabilidad es \(p=0.22\)
+
+    
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+En cuanto a la calidad de nuestro detector podemos concluir que, dado
+que la probabilidad se encuentra entre los valores \(0.10<p<0.9\) y
+siendo las desviaciones típicas muy similares, nos encontramos ante un
+detector fiable y aceptable, estando en concordancia con los criterios
+de aceptación establecidos.
+
+    \hypertarget{absorciuxf3n-de-partuxedculas-beta}{%
+\section{Absorción de partículas
+beta}\label{absorciuxf3n-de-partuxedculas-beta}}
+
+Nuevamente usaremos el detector G-M y la una muestra de \(Sr^{90}\) de
+las anteriores prácticas. Los datos recogidos interponiendo blindajes de
+aluminio entre muestra y detector son los siguientes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   espesor (mm) |   cuentas |   espesor (g/cm2)
+----------------+-----------+-------------------
+           1.5  |      4952 |           0.4125
+           1.85 |      2440 |           0.50875
+           2.2  |      1162 |           0.605
+           2.65 |       511 |           0.72875
+           3    |       213 |           0.825
+           3.1  |       191 |           0.8525
+           3.3  |        77 |           0.9075
+           3.6  |        42 |           0.99
+           4.1  |        39 |           1.1275
+           4.45 |        31 |           1.22375
+           4.9  |        32 |           1.3475
+           5.25 |        41 |           1.44375
+    \end{Verbatim}
+
+    Donde el espesor en \(g/cm^2\) se ha obtenido multiplicando el espesor
+(en cm) por la densidad del aluminio \(\rho = 2.75 g/cm^2\).
+
+La gráfica del número de cuentas frente al espesor, en escala
+semilogarítmica, es la siguiente
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Por inspección visual podemos apreciar que el alcance tiene un valor de
+\(0.99g/cm^2\)
+
+    
+
+    Disponemos de un set de datos que relaciona linealmente el alcance con
+la energía máxima de las partículas \(\beta\) emitidas por diferentes
+nucleidos
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coeficientes: 1.910
+Término independiente: 0.163
+Mean Squared Error (MSE): 0.01
+R2: 0.99
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_32_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Con los resultados de la regresión lineal y el valor de alcance obtenido
+experimenalmente podemos estimar el valor de la energía máxima para
+nuestra muestra radiactiva de emisión beta es \(E_m = 2.05MeV\)
+
+    
+
+    Podemos comparar estos valores experimentales frente a los resultados
+dados por las siguientes ecuaciones, conocidas como las ecuaciones de
+Feather:
+
+\[
+E = 1.845D + 0.245 \quad si \quad 0.3<D<1.5 \quad ;  \quad \\
+E = 1.918D^{0.72} \quad si \quad 0.012<D<1.3
+\]
+ 
+            
+    
+    Teniendo en cuenta que nuestra fuente de estroncio 90 tiene una energía
+máxima teórica de \(E_t = 2.28 MeV\), llegamos al resultado de un
+alcance teórico \(D = 1.1g/cm^2\) según la primera fórmula de Feather.
+
+    
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Los resultados obtenidos son comparables ya que todos comparten orden de
+magnitud y primera cifra significativa. Sin embargo, la diferencia entre
+ambos resultados puede tener varias causas. Algunas de ellas pueden ser
+errores sistemáticos durante el experimento (debido a mala calibración
+de los instrumentos, desplazamiento de las muestras, errores en la
+medición manual), falta de rigurosidad en las estimaciones (la
+estimación del alcance se ha hecho por inspección visual), falta de
+datos (más datos supone mayor fiabilidad en experimentos de naturaleza
+aleatoria), etc. Además, hay que tener en cuenta que estamos comparando
+valores entre dos métodos que son propiamente experimentales, sin un
+análisis de confianza no podemos concluir que los valores obtenidos son
+inconsistentes.
+
+    \hypertarget{detectores-de-centelleo.-absorciuxf3n-de-radiaciuxf3n-gamma}{%
+\section{Detectores de centelleo. Absorción de radiación
+gamma}\label{detectores-de-centelleo.-absorciuxf3n-de-radiaciuxf3n-gamma}}
+
+Colocamos distintos materiales (aluminio, plomo, hierro) de diferentes
+espesores entre una muestra radiactiva de \(Co^{60}\) y un detector de
+centelleo. Representamos dichos datos en la siguiente gráfica junto con
+las regresiones lineales correspondientes. Además presentaremos algunos
+resultados interesantes requeridos en esta práctica
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ALUMINIO
+Densidad 2.7 g/cm3
+Contaje espesor cero N\_0 = 11091 cuentas
+Contaje mitad N\_12 = 5546 cuentas
+Espesor de semirreducción X\_12 = 79.54 mm
+Coeficiente de absorción lineal mu = 0.087 cm-1
+Coeficiente de absorción másico mu\_m = 0.032 cm2/g
+Número de átomos por cm3: 6.02626116026962e+22
+Sección eficaz sigma = 1.4461051514657685e-24 cm2
+
+PLOMO
+Densidad 11.34 g/cm3
+Contaje espesor cero N\_0 = 9360 cuentas
+Contaje mitad N\_12 = 4680 cuentas
+Espesor de semirreducción X\_12 = 22.54 mm
+Coeficiente de absorción lineal mu = 0.308 cm-1
+Coeficiente de absorción másico mu\_m = 0.027 cm2/g
+Número de átomos por cm3: 3.295901361891892e+22
+Sección eficaz sigma = 9.332363419312933e-24 cm2
+
+HIERRO
+Densidad 7.874 g/cm3
+Contaje espesor cero N\_0 = 10172 cuentas
+Contaje mitad N\_12 = 5086 cuentas
+Espesor de semirreducción X\_12 = 30.55 mm
+Coeficiente de absorción lineal mu = 0.227 cm-1
+Coeficiente de absorción másico mu\_m = 0.029 cm2/g
+Número de átomos por cm3: 8.491062108378548e+22
+Sección eficaz sigma = 2.6721994446750493e-24 cm2
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_38_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Finalmente calcularemos la eficiencia del detector de centelleo
+
+    \textbf{Fuente: \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Tipo de emisión: emisión \(\beta^{-}\) y \(\gamma\)
+\item
+  Tiempo de medida: \(t=90s\)
+\item
+  Número de cuentas: \(L=164463\)
+\item
+  Fondo: \(F = 499\)
+\item
+  Tasa de recuento neta: \(A'= \frac{(L-F)}{t} = 1821.82 Bq\)
+\item
+  Actividad inicial de la muestra: \(A_0 = 1 \mu Ci = 37000 Bq\)
+\item
+  Fecha: septiembre 2010. Tiempo transcurrido hasta marzo 2012 cuando
+  fueron tomadas las medidas: \(T_m = 18 meses (1.5 a)\)
+\item
+  Período:
+  \(T_{1/2} = 5.26 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.13 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 30363 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.0599\)
+\end{itemize}
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Para las energías de desintegración de la muestra de \(Co^{60}\), que
+son 1.172 MeV y 1.333 MeV, hemos obtenidos los siguientes valores
+teóricos por inspección visual de las gráficas aportadas:
+
+\textbf{Teórico}
+
+\begin{itemize}
+\item
+  Aluminio: \(\mu = 0.15cm^{-1}\) y \(\mu_m = 0.025 cm^2/g\)
+\item
+  Plomo: \(\mu = 0.6 cm^{-1}\) y \(\mu_m = 0.03 cm^2/g\)
+\end{itemize}
+
+Mientras que los valores experimentales han sido
+
+\textbf{Experimental}
+
+\begin{itemize}
+\item
+  Aluminio: \(\mu = 0.087cm^{-1}\) y \(\mu_m = 0.032 cm^2/g\)
+\item
+  Plomo: \(\mu = 0.308 cm^{-1}\) y \(\mu_m = 0.027 cm^2/g\)
+\end{itemize}
+
+Podemos comprobar que valores teóricos y experimentales son muy
+similares para el coeficiente de absorción másico (al redondear
+comparten primera cifra significativa), sin embargo hay notables
+diferencias para el valor de la absorción lineal. Estas diferencias
+pueden deberse a diferentes motivos:
+
+\begin{itemize}
+\item
+  Falta de rigor en los valores teóricos, obtenidos por inspección
+  visual de una gŕafica.
+\item
+  No se han establecido intervalos de confianza ni medidas de error, ya
+  sean sistemáticos en la medida de espesores, o bien aleatorios
+  referentes a la escasez de medidas. Además no se tienen en cuenta
+  otras fuentes de radiación que también pueden llegar a nuestro
+  detector.
+\item
+  Al ser una muestra radiativa de emisión \(\beta\), es posible que
+  nuestro detector haya capturado parte de éstas partículas, así como
+  los fotones originados por efecto Compton y/o en la aniquilación
+  electrón-positrón que conlleva la creación de pares
+\end{itemize}
+
+La ley de atenuación exponencial de radiación gamma es válida al
+tratarse de un haz colimado y monoenergético siempre que el material
+atravesado sea de poco espesor y naturaleza homogénea, condiciones que
+no podemos garantizar en nuestro experimento ya que
+
+\begin{itemize}
+\item
+  El haz no ha sido colimado y contiene varias energías.
+\item
+  No sabemos la pureza y homogeneidad del material blindado.
+\end{itemize}
+
+Dicho esto, a pesar de no poder garantizar la ley de atenuación
+exponencial, sí es cierto que los datos se ajustan linealmente en una
+escala semilogarítmica, por lo que en primera aproximación podrían
+relacionarse a un comportamiento exponencial.
+
+    \hypertarget{determinaciuxf3n-experimental-del-peruxedodo-de-una-muestra-radiactiva}{%
+\section{Determinación experimental del período de una muestra
+radiactiva}\label{determinaciuxf3n-experimental-del-peruxedodo-de-una-muestra-radiactiva}}
+
+El detector utilizado es un detector de centelleo similar al de la
+práctica anterior. Se utiliza una muestra de período corto \(Ba^{137}\)
+que se obtiene con un generador de isótopos que contiene \(Cs^{137}\) en
+equilibrio con el \(Ba^{137}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+    |   tiempo (m) |   cuentas
+----+--------------+-----------
+  0 |            0 |     10479
+  1 |            1 |      6934
+  2 |            2 |      5998
+  3 |            3 |      4169
+  4 |            4 |      3374
+  5 |            5 |      2636
+  6 |            6 |      1680
+  7 |            7 |      1537
+  8 |            8 |      1152
+  9 |            9 |       737
+ 10 |           10 |       665
+ 11 |           11 |       488
+ 12 |           12 |       436
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_45_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Aplicando logaritmos a la ecuación de la actividad de una muestra
+radiactiva tenemos
+
+\[
+A(t) = A_0e^{-\lambda t} \quad -> \quad Ln (A(t)) = -\lambda t +Ln(A_0)
+\]
+
+Así la contstante de desintegración será la pendiente de una regresión
+lineal. Por otro lado el período de semidesintegración es
+
+\[
+T_{1/2} = \frac{Ln(2)}{\lambda}
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coeficientes: -0.005
+Término independiente: 9.194
+Mean Squared Error (MSE): 0.01
+R2: 0.99
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_47_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Por lo tanto tenemos que la constante es \(\lambda = 0.005\) 1/s
+
+    
+ 
+            
+    
+    Siendo el período de semidesintegración 138.63 s
+
+    
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Hemos comprobado que nuestros datos cumplen una ley de decaimiento
+exponencial, calculando así la constante de desintegración y el
+correspondiente período de semidesintegración. Al tener un período de
+semidesintegración un valor entorno a 2.3 minutos no podemos tomar
+medidas de tiempo mayores. Si midiésemos cada 5 minutos, por ejemplo,
+transcurriría casi dos veces el período de semidesintegración entre
+medidas, reduciéndose casi dos veces a la mitad la población de núcleos.
+
+    \hypertarget{espectrometruxeda-de-partuxedculas-alfa-y-beta.-absorciuxf3n-de-partuxedculas-alfa}{%
+\section{Espectrometría de partículas alfa y beta. Absorción de
+partículas
+alfa}\label{espectrometruxeda-de-partuxedculas-alfa-y-beta.-absorciuxf3n-de-partuxedculas-alfa}}
+
+Contamos con un detector de barrera de superficie con el que detectamos
+partículas alfa provenientes de una fuente (\(Am^{241}(\alpha)\),
+\(Sr^{90}(\beta)\), \(Cs^{137}(\beta; CI)\)) radiactiva mientras
+variamos la distancia. No tendremos medidas de fondo por ser
+prácticamente despreciable.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   distancia (cm) |   area (cuentas) |        bq
+------------------+------------------+-----------
+              1   |            61281 | 204.27
+              1.5 |            36195 | 120.65
+              2   |            24549 |  81.83
+              2.5 |            13676 |  45.5867
+              3   |             9207 |  30.69
+              3.5 |              563 |   1.87667
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Coeficientes: -75.319
+Término independiente: 250.286
+Mean Squared Error (MSE): 332.39
+R2: 0.93
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_53_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+     
+            
+    
+    Mediante un ajuste lineal podemos extrapolar el alcance (punto de corte
+con eje X), que toma un valor de 3.32 cm.
+
+    
+
+    \textbf{Eficiencia del detector para \(\alpha\)}
+
+Se toma el valor de lárea cuando la muestra está lo más cercana posible
+al detector, es decir, a 1cm.
+
+\begin{itemize}
+\item
+  Área/t: \(A' = 204.27\) Bq
+\item
+  Actividad inicial de la muestra: \(A_0 = 37\) kBq
+\item
+  Fecha: año 1988. Tiempo transcurrido entre 1988 y 2012: 24 años.
+  \(T_{1/2} = 458 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.0015 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 35680.19 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.0057\)
+\end{itemize}
+
+    \textbf{Eficiencia del detector para \(\beta\)}
+
+Se toma el valor del área para el espectro del \(Sr^{90}\)
+
+\begin{itemize}
+\item
+  Área/t: \(A' = 370.56\) Bq
+\item
+  Actividad inicial de la muestra: \(A_0 = 37\) kBq
+\item
+  Fecha: año 1988. Tiempo transcurrido entre 1988 y 2012: 24 años.
+  \(T_{1/2} = 28.1 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.024 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 20468.88 Bq\)
+\item
+  Eficiencia \(\epsilon = A'/A = 0.018\)
+\end{itemize}
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+Aunque el espectro del \(Am^{241}\) tiene forma de acampanada, si
+nuestro detector tuviera mayor resolución realmente deberíamos observar
+picos energéticos de valor 5545, 5513, 5486, 5443 y 5388 keV.
+
+Una de las curiosidades de las partículas \(\alpha\) es que su alcance
+en aire es del orden de unos pocos centímetros, con lo cual serían
+indetectables en fuentes alejadas. En particular, con los datos de este
+ejercicio obtenemos que serían indetectables a distancias mayores a 3.32
+cm.
+
+Las partículas \(\beta\) tienen un espectro continuo porque en cada
+proceso existe un reparto de energía entre el electrón y el
+antineutrino. La forma del espectro parte de energía cero, aumenta y
+disminuye hasta llegar un punto en el que la energía cinética máxima del
+electrón es igual a la diferencia de masas entre el estado inicial y
+final, que corresponde al caso en el que la energía cinética del
+antineutrino es cero.
+
+En cuanto a los espectros podemos decir que el espectro del \(Sr^{90}\)
+tiene dos componentes, una son las betas del decaimineto de \(Sr^{90}\)
+a \(Y^{90}\) y otra debida al decaimiento de \(Y^{90}\) a \(Zr^{90}\).
+El filtro de plomo mantiene la forma del espectro beta aunque reduciendo
+su área en un 90\%. El espectro del \(Cs^{137}\) tiene la misma forma
+que los anteriores espectros a diferencia de dos picos debidos a efectos
+de reconversión interna.
+
+Finalmente, el contador G-M es mejor porque resultó tener una eficiencia
+del 11\%, mientras que éste es de 1.8\%.
+
+    \hypertarget{espectroscopuxeda-gamma-con-detectores-de-inatl}{%
+\section{Espectroscopía gamma con detectores de
+INA(TL)}\label{espectroscopuxeda-gamma-con-detectores-de-inatl}}
+
+Los detectores de NaI(Tl) son detectores de centelleo, en los que la
+sustancia luminiscente es NaI(Tl). Para obtener los espectros de
+muestras emisoras gamma se utiliza un sistema de acumulación de impulsos
+similar al de la práctica anterior.
+
+Una vez medido el fondo, y tras calibrar el detector con una muestra de
+\(Eu^{152}\), pasaremos a determinar su eficiencia y resolución.
+
+    \textbf{Calibración}
+
+\begin{itemize}
+\item
+  Primer pico: canal \(c_1 = 38.78\); energía \(E = 0.122\) MeV
+\item
+  Segundo pico: canal \(c_2 = 400.92\); energía \(E = 1.41\) MeV
+\end{itemize}
+
+\textbf{Eficiencia}
+
+\begin{itemize}
+\item
+  Actividad inicial de la muestra \(A_0 = 40.2\) kBq
+\item
+  Fecha: año 2001. Tiempo transcurrido entre 2001 y 2012: 11 años.
+  \(T_{1/2} = 13.52 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.051 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 22872.05 Bq\)
+\item
+  Eficiencia \(\epsilon (E) = \frac{A_f}{AC_r}\), siendo \(A_f\) el área
+  del fotopico (Bq)
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   energia (MeV) |   area pico (Bq) |    Cr |   eficiencia |   eficiencia (\%)
+-----------------+------------------+-------+--------------+------------------
+           0.04  |           1680.1 | 0.567 |        0.13  |             13
+           0.122 |            584.8 | 0.307 |        0.083 |              8.3
+           0.244 |             98.7 | 0.079 |        0.055 |              5.5
+           0.344 |            303.1 | 0.272 |        0.049 |              4.9
+           0.78  |             56.3 | 0.133 |        0.019 |              1.9
+           0.96  |             28.1 | 0.145 |        0.008 |              0.8
+           1.41  |             22.6 | 0.214 |        0.005 |              0.5
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_64_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{Resolución}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ fuente   |   energia (MeV) |   anchura semialtura (MeV) |   resolucion (\%)
+----------+-----------------+----------------------------+------------------
+ Cs137    |           0.667 |                      0.057 |                9
+ Co60     |           1.17  |                      0.067 |                6
+ Co60     |           1.32  |                      0.073 |                6
+ Na22     |           1.26  |                      0.08  |                6
+ Na22     |           0.51  |                      0.046 |                9
+ Zn65     |           1.12  |                      0.073 |                7
+ Mn54     |           0.834 |                      0.062 |                7
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_67_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Una vez caracterizado el detector, pasaremos estudiar el espectro de
+distintos isótopos
+
+    \(Cs^{137}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.468 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.478 MeV
+\item
+  Energía del pico de retrodispersión: 0.201 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.184 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_70_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Co^{60}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.966 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.962 MeV y 1.119 MeV
+\item
+  Energía del pico de retrodispersión: 0.233 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.210 MeV y 0.214 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_72_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Na^{22}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 1.040 MeV
+\item
+  Energía del borde Compton del espectro teórico: 1.063 MeV
+\item
+  Energía del pico de retrodispersión: 0.190 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.213 MeV
+\end{itemize}
+
+\textbf{Aniquilación}
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro (aniquilación): 0.336 MeV
+\item
+  Energía del borde Compton del espectro teórico (aniquilación): 0.341
+  MeV
+\item
+  Energía del pico de retrodispersión (aniquilación): No se ve
+\item
+  Energía del pico de retrodispersión teório (aniquilación): 0.170 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_74_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Zn^{65}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.909 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.906 MeV
+\item
+  Energía del pico de retrodispersión: 0.229 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.208 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_76_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \(Mn^{54}\)
+
+\begin{itemize}
+\item
+  Energía del borde Compton del espectro: 0.635 MeV
+\item
+  Energía del borde Compton del espectro teórico: 0.646 MeV
+\item
+  Energía del pico de retrodispersión: 0.212 MeV
+\item
+  Energía del pico de retrodispersión teório: 0.196 MeV
+\end{itemize}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Nuclear_files/Nuclear_78_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Por otro lado, acumulamos durante un tiempo una muestra de \(Co^{60}\)
+de actividad conocida y, durante el mismo tiempo, otra muestra de
+\(Co^{60}\) de actividad desconocida. Comparando los fotopicos se
+obtendrá la actividad desconocida.
+
+    \textbf{Actividad conocida \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Actividad inicial de la muestra \(A_0 = 1 \mu Ci = 37000 Bq\)
+\item
+  Fecha: año 2009. Tiempo transcurrido entre 2009 y 2012: 3 años.
+  \(T_{1/2} = 5.26 a -> \lambda = \frac{ln2}{T_{1/2}} = 0.13 a^{-1}\)
+\item
+  Actividad corregida: \(A = A_0e^{- \lambda T_m} = 24917.91 Bq\)
+\item
+  Área del primer pico: 268.19 Bq
+\item
+  Área del segundo pico: 246.08 Bq
+\end{itemize}
+
+\textbf{Actividad desconocida \(Co^{60}\)}
+
+\begin{itemize}
+\item
+  Área del primer pico: 366.24 Bq
+\item
+  Área del segundo pico: 340.33 Bq
+\item
+  Actividad
+  \(A = A_0e^{- \lambda T_m} \frac{\frac{366.24}{268.19} + \frac{340.33}{246.08}}{2} = 34244.74 Bq\)
+\end{itemize}
+
+    Para finalizar, introducimos una muestra de elemento desconocido y
+almacenamos datos hasta tener una buena estadística. Tenemos 4 fotopicos
+con energías 0.511, 0.662, 1.17 y 1.33 MeV. Con éstos datos concluimos
+que se trata de una combinación de \(Co^{60}, Cs^{137}\) y \(Na^{22}\)
+
+    \hypertarget{conclusiones}{%
+\subsection{Conclusiones}\label{conclusiones}}
+
+En esta práctica hemos calculado la eficiencia y la resolución del
+detector. Podemos ver que la eficiencia decae cuánto mayor es la energía
+de los fotones, pues no logran interactuar con el detector. La
+resolución decae también, pero en este caso el decaimiento es lineal.
+
+El espectro de la radiación gamma es discreto, pues como hemos visto
+durante el desarrollo del ejercicio, cada energía (discreta) corresponde
+con los fotopicos observados. Junto a cada pico de energía vemos la
+correspondiente región continua asociada al efecto Compton. A vistas de
+los resultados nada parece indicar una discordancia entre los resultados
+teóricos y experimentales. A este respecto cabe mencionar los picos de
+0.511 MeV, los cuales surgen por la aniquilación de los positrones
+emitidos por algunas muestras, que dan lugar a fotones de dicha energía.
+Por ejemplo ocurre con el \(Na^{22}\) aunque no con el \(Zn{65}\). Cabe
+entonces preguntarse por qué el \(Zn{65}\) tiene un pico en 0.511
+MeV\ldots{} la razón es que el \(Zn{65}\) es capaz de emitir energía
+mayor a 1.022 MeV, con lo que puede dar lugar a la creación de pares con
+energía igual a 0.511 MeV.
+
+Una obervación importante es que en algunos espectros aparecen picos
+correspondientes a emisión de rayos X. Esto ocurre debido a procesos de
+conversión interna donde la reordenación electrónica da lugar a emisión
+de rayos X.
+
+Para finalizar, recalcar que la calibración del espectro de energías es
+un proceso fundamental para identificar la posición de cada pico en
+nuestra escala de energías. Esto lo hemos hecho comparando todos los
+picos del espectro con los del \(Eu^{152}\).
+
+A modo de curiosidad, tan solo decir que aunque en este experimento se
+ha medido el espectro gamma de una serie de elementos en el laboratorio,
+también resultaría útil para medir la radiación gamma que nos llega
+desde el exterior en forma de rayos cósmicos, o por ejemplo podríamos
+medir la radiactividad de un plátano (por su contenido en pótasio
+\(K^{40}\)) o bien la radiactividad cerca de una central nuclear
+(\(U^{238}\)) y/o algunas tierras raras presentes de manera natural en
+el ambiente o en particular en la fabricación de lámparas elécticas,
+como son el torio (\(Th^{232}\)).
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
