@@ -1,0 +1,49 @@
+\subsection{Efecto Hall}
+
+Se conoce como efecto Hall a la aparición de un campo eléctrico en el interior de un conductor por el que circula una corriente $I$ en presencia de un campo magnético $B$. Las cargas que circulan por el conductor están sometidas a la fuerza de Lorentz
+
+\begin{equation}
+	\overrightarrow{F} = q(\overrightarrow{v}x\overrightarrow{B})
+\end{equation}
+
+Con lo cual aparece una fuerza magnética en los portadores de carga que los reagrupa a ambos lados del conductor de anchura $d$, apareciendo así una diferencia de pontencial en el conductor que origina un campo eléctrico perpendicular al campo magnético. Este campo eléctrico es el denominado campo Hall $E_H$, y ligada a él aparece la tensión Hall $V_H$ según la fórmula
+
+\begin{equation}
+	V_H = R_H\frac{IB}{d}
+\end{equation}
+
+Donde la constante $R_H$ se conoce como constante de Hall y equivale a
+
+\begin{equation}
+	R_H = \frac{1}{nq}
+\end{equation}
+
+Siendo $n$ la densidad de portadores de carga y $q$ la carga correspondiente. Además, según \cite{movilidad}, dicha constante se puede relacionar con la conductividad $\sigma$ y con la movilidad $\mu_H$ mediante la ecuación
+
+\begin{equation}
+	\mu = R_H \sigma
+\end{equation}
+
+\subsection{Efecto Hall y magnetorresistencia}
+
+La magnetorresistencia, descubierta por William Thomson en 1857, es la propiedad que tienen algunos materiales de variar su resistencia eléctrica cuando son sometidos a un campo magnético. Este fenómeno puede relacionarse con el efecto Hall a través de la Ley de Ohm.
+
+\begin{equation}
+	R = \frac{V}{I}
+\end{equation}
+
+\subsection{Efecto Hall y temperatura}
+
+Un semiconductor puede clasificarse según su conductividad en intrínseco y extrínseco. En los semiconductores intrínsecos los agentes conductores son los electrones y huecos que el material es capaz de generar térmicamente. El p-Germanium es un semiconductor extrínseco ya que es un semiconductor (intrínseco) dopado con materiales que lo proveen de un exceso de huecos para favorecer la conducción a bajas temperaturas. Partiendo del modelo clásico, la conductividad total será la suma de las contribuciones individuales de cada tipo de portador de carga libre, según la expresión
+
+\begin{equation}
+	\sigma = n_p \mu_p + n_h \mu_h
+\end{equation}
+
+Siendo $n_{p,h}$ la densidad de portadores y $\mu{p,h}$ la movilidad (el subíndice se refiere a portadores y huecos). Aplicando la estadística de Fermi-Dirac a la anterior ecuación y teniendo en cuenta que ambas poblaciones siguen la ley de acción de masas o del equilibrio $n_p n_h = n_i^{2}$ tenemos que se cumple
+
+\begin{equation}
+	\sigma = \sigma_0 e^{\frac{-E_g}{2K_bT}}
+\end{equation}
+
+Donde $\sigma_0$ es un prefactor que depende de la movilidad y la densidad de estados efectivos en las bandas de conducción y valencia, $E_g$ representa la energía del intervalo prohibido, $K_b$ es la constante de Boltzmann y $T$ la temperatura.
