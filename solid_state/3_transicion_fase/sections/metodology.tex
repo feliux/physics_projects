@@ -1,0 +1,11 @@
+Contamos con un programa compilado que lleva a cabo la simulación del algoritmo de Metrópolis para un sistema de partículas bajo la interacción del potencial de Lennard-Jones. El programa realiza un número de pasos variables ($1-3 \cdot 10^{7}$) en función de la concentración $\Sigma$ (partículas$/\textup{\r{A}}^2$) y la temperatura $T$ (K) para un sistema de 200 partículas en una caja con condiciones periódicas. La ejecución devuelve una serie de ficheros de datos que representan distintas magnitudes y propiedades del sistema:
+
+- Energía: valores en 1000 pasos distintos, así como el promedio a lo largo de todos los pasos.
+
+- Dinámica: coordenadas de 200 partículas cada 100000 pasos.
+
+- RDF (función de distribución radial): mide la proporción en la cual se han dado las distintas distancias entre partículas. Se encuentra normalizada, de tal forma que el valor 1 corresponde a una distribución aleatoria de las partículas. 
+
+- Distribución: representa el número de partículas a lo largo del plano, en función de la distancia y dirección. Se encuentra normalizada al igual que RDF.
+
+Con el objetivo de simular el argón, utilizaremos los parámetros experimentales de Lennard-Jones de dicho átomo, $\sigma \simeq 3.4 \textup{\r{A}}$ y $\epsilon \simeq 0.01$eV. Estos valores y sucesivos carecerán de errores al tratarse de una simulación.

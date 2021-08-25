@@ -1,0 +1,13 @@
+Una célula solar es un dispositivo capaz de convertir energía lumínica en energía eléctrica mediante el efecto fotoeléctrico.
+
+Cuando un semiconductor como el silicio es expuesto a la luz, un fotón de energía arranca un electrón, creando a la vez un «hueco» en el átomo excitado. Normalmente, el electrón encuentra rápidamente otro hueco para volver a llenarlo, y la energía proporcionada por el fotón, por tanto, se disipa en forma de calor. El principio de una célula fotovoltaica es obligar a los electrones y a los huecos a avanzar hacia el lado opuesto del material en lugar de simplemente recombinarse en él: así, se producirá una diferencia de potencial y por lo tanto tensión entre las dos partes del material. Para ello se dopa el silicio (unión PN) con la intención de crear un campo eléctrico permanente, que es el que obliga a separarse a los huecos y electrones y produce así la corriente eléctrica.
+
+Cuando iluminamos una célula que se encuentra conectada a una carga o resistencia, se produce una diferencia de potencial en los extremos de la carga y circula una corriente por ella. La corriente entregada a la carga por la célula es el resultado neto de dos componentes que se oponen, éstas son la corriente de iluminación $I_L$ debida a portadores de carga que produce la iluminación y la corriente de oscuridad $I_D$ debida a la recombinación térmica de portadores
+
+\begin{equation}
+	I_D = I_0 \left[ e^{\frac{-qV}{mK_b}T} - 1 \right]
+\end{equation}
+
+Donde $V$ es el voltaje cuando se polariza el diodo, $k_b$ es la constante de Boltzmann, $T$ es la temperatura, $m$ un factor de calidad del diodo y hace referencia a las imperfecciones en las uniones en diodod, $I_0$ es la corriente inversa de saturación del diodo. Así pues, la corriente entregada por la célula será $I = I_L - I_D$ y la curva característica I-V será por tanto la superposición de la curva I-V del diodo en oscuridad con la corriente inducida.
+
+Los parámetros más importantes para la caracterización de una célula solar son entonces la corriente de cortocircuito $I_SC$ (intensidad proporcionada por la célula cuando $V=0$) y corresponde con la corriente más grande que puede aportar la célula, la tensión de circuito abierto $V_OC$ que sería la tensión máxima disponible de una célula cuando $I=0$, la potencia máxima $P_{max}$ que corresponde con el punto de inflexión de la curva I-V, el factor de forma $FF = \frac{P_{max}}{I_{SC}V_{OC}}$ y, por último, la eficiencia de la célula $\eta = \frac{P_{max}}{P_L}$ (donde $P_L$ sería la energía entrante del Sol).
