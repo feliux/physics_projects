@@ -1,0 +1,43 @@
+El flujo de Hagen-Poiseuille es aquel que se establece en un tubo de sección circular por el que circula un fluido en régimen laminar, como consecuencia de la diferencia de presión existente entre los extremos del tubo. Consideremos un tubo de radio $r$ y espesor $dr$, las fuerzas que actúan sobre el mismo son la aquellas debidas a la presión $F=p\pi r^2$ sobre la sección de entrada y de salida, respectivamente, del fluido en el cilindro, además de la fuerza de rozamiento $F_R = -\mu A \frac{d\nu}{dr}$. En condiciones de flujo estacionario $\Sigma F = ma=  0$ y admitiendo que el fluido en contacto con las paredes del cilindro se encuentra en reposo, es posible llegar a la ecuación de velocidad del fluido
+
+\begin{equation}
+	v(r) = \frac{p_1 - p_2}{4\mu L} \left( R^2 - r^2 \right)
+\end{equation}
+
+Siendo $\mu$ la viscosidad dinámica del fluido. A partir de este resultado se puede calcular el volumen de líquido que fluye a través del tubo en un tiempo $t$
+
+\begin{equation}
+	V = \int_{0}^{R} v(r) 2\pi r dr t = \frac{\pi R^4 \Delta p}{8\mu L}t
+\end{equation}
+
+De donde se obtiene la ley de Hagen-Poiseuille
+
+\begin{equation}
+	Q = \frac{dV}{dt} = \frac{\pi R^4 \Delta p}{8\mu L} \label{eq_caudal}
+\end{equation}
+
+A partir de este resultado se puede calcular el número de Reynolds $Re$
+
+\begin{equation}
+	Re = \frac{U\rho d}{\mu} \label{eq_reynolds}
+\end{equation}
+
+Donde $U = \frac{Q}{\pi R^2}$ es la velocidad promedio, $\rho$ la densidad y $d$ el diámetro del cilindro capilar.
+
+El coeficiente de rozamiento $\lambda$ de una tubería, también conocido como factor de fricción o coeficiente de resistencia de Darcy-Weibasch, es una magnitud adminesional que está estrechamente relacionada con el número de Reynolds. En general, en tubos de sección constante con paredes lisas, $\lambda$ es función exclusivamente del número de Reynolds y de la forma del conducto mientras que en tubos con paredes rugosas, $\lambda$ también es función de la rugosidad relativa (altura $h$ dividida por el diámetro $d$). En el caso de un tubo horizontal se satisface la relación
+
+\begin{equation}
+	\lambda = \frac{2d \Delta p}{L\rho U^2} \label{eq_lambda}
+\end{equation}
+
+Los resultados experimentales de $\lambda$ vs $Re$ para distintos valores de $h$ y $d$ para una forma de conducto fija se representan en gráficas (generalmente log-log) denominadas de Moody. Para tubos horizontales, de sección circular y régimen laminar de fluido, a partir de las ecuaciones (\ref{eq_reynolds}) y (\ref{eq_lambda}) se obtiene
+
+\begin{equation}
+	\lambda = \frac{64}{Re} \label{eq_lambda_reynolds}
+\end{equation}
+
+Cuando se alcanza el régimen turbulento, el perfil de velocidades no se puede calcular de forma exacta. En este caso, por razones dimensionales se considera que el perfil de velocidades promedio lejos de la pared (en regiones próximas al centro del tubo) está dado por un perfil logarítmico mientras que se considera un perfil lineal en la inmediata vecindad de la pared. Se puede obtener así un resultado semi-empírico para $\lambda$, conocido como ecuación de Karmann-Prandtl, válida para flujos turbulentos en tubos lisos
+
+\begin{equation}
+	\frac{1}{\sqrt{\lambda}} = 2\log \left( Re \sqrt{\lambda} \right) - 0.8 \label{eq_karmann_prandtl}
+\end{equation}
