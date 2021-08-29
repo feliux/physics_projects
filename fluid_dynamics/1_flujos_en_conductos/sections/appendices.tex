@@ -1,4 +1,6 @@
-\begin{table*}[t]
+\section{Tablas}
+
+\begin{table*}[h]
 	\centering
 %	\begin{adjustwidth}{-2cm}{}
 		\begin{tabular}{cccccc}
@@ -34,3 +36,43 @@ $0.34 \pm 0.04$   &   $9.0 \pm 0.8$    &   $0.37 \pm 0.05$   &   $0.39 \pm 0.12$
 		\label{table_exp}
 %	\end{adjustwidth}
 \end{table*}
+
+\section{Tratamiento de incertidumbres}
+
+\begin{itemize}
+
+\item\textbf{Volumen agua}
+\[\mathrm{\Delta V = \left\vert \frac{1}{\rho} \Delta m\right\vert }\]
+
+
+\item \textbf{Caudal}
+\[\mathrm{\Delta Q = \left\vert  \frac{1}{t}  \Delta V\right\vert + \left\vert  \frac{-V}{t^{2}}  \Delta t\right\vert }\]
+
+\item \textbf{Presión}
+\[\mathrm{\Delta p = \left\vert \rho g  \Delta h \right\vert }\]
+
+\item \textbf{Presión corregida}
+\[\mathrm{\Delta p' = \Delta p + \left\vert \frac{1}{m} \Delta b \right\vert + \left\vert \frac{-b}{m^2} \Delta m \right\vert }\]
+
+\item \textbf{Radio al cuadrado}
+\[\mathrm{\Delta r^2 = \left\vert \frac{M}{\pi \rho L} \Delta M \right\vert + \left\vert \frac{-M}{\pi \rho L^2}\Delta L\right\vert }\]
+
+\item \textbf{Viscosidad}
+\[\mathrm{\Delta \mu = \left\vert  \frac{2 \pi \left( r^2 \right) }{8mL}  \Delta r^2 \right\vert + \left\vert  \frac{- \pi \left( r^2 \right)^{2}}{8mL^2} \Delta L \right\vert + \left\vert  \frac{- \pi \left( r^2 \right)^{2}}{8m^2L} \Delta m \right\vert }\]
+
+\item \textbf{Velocidad}
+\[\mathrm{\Delta U = \left\vert \frac{1}{\pi r^2} \Delta Q \right\vert + \left\vert \frac{-Q}{\pi \left( r^2 \right)^2}  \Delta r^2\right\vert }\]
+
+\item \textbf{Diámetro} $d = 2 \sqrt{\left( r^2 \right)}$
+\[\mathrm{\Delta d = \left\vert \frac{1}{\sqrt{\left( r^2 \right)}} \Delta r^2 \right\vert }\]
+
+\item \textbf{Número de Reynolds}
+\[\mathrm{\Delta \left( Re \right) = \left\vert \frac{\rho d}{\mu}  \Delta U \right\vert + \left\vert \frac{U\rho}{\mu} \Delta d \right\vert + \left\vert \frac{-U \rho d}{\mu^{2}} \Delta \mu \right\vert  }\]
+
+\item \textbf{Coeficiente de rozamiento} $\lambda_U$
+\[\mathrm{\Delta \lambda_U = \left\vert \frac{2d}{\rho L U^{2}} \Delta p' \right\vert + \left\vert \frac{2 p'}{\rho L U^{2}} \Delta d \right\vert + \left\vert \frac{-2d p'}{\rho L^{2} U^{2}} \Delta L \right\vert + \left\vert \frac{-4d p' U}{\rho L U^{4}} \Delta U \right\vert }\]
+
+\item \textbf{Coeficiente de rozamiento} $\lambda_{64}$
+\[\mathrm{\Delta \lambda_{64} = \left\vert  \frac{-64}{Re^{2}}  \Delta \left( Re \right) \right\vert  }\]
+
+\end{itemize}
