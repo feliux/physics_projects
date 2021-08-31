@@ -14,6 +14,8 @@
 
 3. Velocidad de un frente de llamas
 
+4. Medida de la dimesión fractal de un depósito de partículas
+
 **nuclear_physics**
 
 1. Caracterización de un contador Geiger-Muller
