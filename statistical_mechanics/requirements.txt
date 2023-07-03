@@ -8,7 +8,7 @@ mayavi==4.7.2
 numpy==1.22.0
 Pillow==9.0.1
 pyface==7.1.0
-Pygments==2.7.4
+Pygments==2.15.0
 pyparsing==2.4.7
 PyQt5==5.15.2
 PyQt5-sip==12.8.1
