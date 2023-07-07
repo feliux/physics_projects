@@ -13,7 +13,7 @@ pyparsing==2.4.7
 PyQt5==5.15.2
 PyQt5-sip==12.8.1
 python-dateutil==2.8.1
-scipy==1.5.4
+scipy==1.10.0rc1
 six==1.15.0
 traits==6.1.1
 traitsui==7.1.1
