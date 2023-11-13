@@ -5,3 +5,4 @@ qiskit-ibmq-provider==0.8.0
 qiskit-ignis==0.4.0
 qiskit-terra==0.15.2
 sympy==1.5.1
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
